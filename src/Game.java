@@ -29,7 +29,7 @@ public class Game {
             int option = text.nextInt();
             switch (option) {
                 case 1:
-                    // Use Card
+                    // Round 1 Player on the offence
                     int cardNumber = 1;
                     System.out.println("*** Deck ***");
                     for (Card i : deck1) {
@@ -44,6 +44,7 @@ public class Game {
                     int numberMachine = rand.nextInt(deck2.size());
                     Card machine = deck2.get(numberMachine);
 
+                    // Card Showcase
                     System.out.println("------\nPlayer Card: \n" + deck1.get(cardChosen) + "\n------");
                     System.out.println("------\nMachine Card: \n" + deck2.get(numberMachine) + "\n------");
 
@@ -61,6 +62,35 @@ public class Game {
                     }
                     if (deck2.size() == 0) {
                         System.out.println("You have won the game");
+                        surrender = false;
+                    }
+                    // Round 2 Player on the defence
+
+                    // Card election
+                    System.out.println("What Card do you choose");
+                    cardChosen = sc.nextInt() - 1;
+                    rand = new Random();
+                    numberMachine = rand.nextInt(deck2.size());
+                    machine = deck2.get(numberMachine);
+
+                    // Card Showcase
+                    System.out.println("------\nPlayer Card: \n" + deck1.get(cardChosen) + "\n------");
+                    System.out.println("------\nMachine Card: \n" + deck2.get(numberMachine) + "\n------");
+                    // Result of battle
+                    result = Game.battle(machine, deck1.get(cardChosen));
+                    if (result == 13) {
+                        System.out.println("New Hp of Card : " + deck1.get(cardChosen).getHp());
+                    } else if (result == 14) {
+                        System.out.println("Card Destroyed");
+                        deck1.remove(cardChosen);
+                        System.out.println("Cards left: " + deck1.size());
+                    } else {
+                        System.out
+                                .println("Their attack: " + deck2.get(numberMachine).getAttack() + "\nYour Defence: "
+                                        + deck1.get(cardChosen).getDef());
+                    }
+                    if (deck1.size() == 0) {
+                        System.out.println("You have lost the game");
                         surrender = false;
                     }
                     break;
