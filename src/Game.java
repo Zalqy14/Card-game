@@ -38,7 +38,7 @@ public class Game {
                         System.out.println("*********");
                         cardNumber++;
                     }
-                    System.out.println("What Card do you choose");
+                    System.out.println("What Card do you choose Ofence");
                     int cardChosen = sc.nextInt() - 1;
                     Random rand = new Random();
                     int numberMachine = rand.nextInt(deck2.size());
@@ -65,9 +65,16 @@ public class Game {
                         surrender = false;
                     }
                     // Round 2 Player on the defence
-
+                    cardNumber = 1; // Reset The card number back to 1 from 6
+                    System.out.println("*** Deck ***");
+                    for (Card i : deck1) {
+                        System.out.println("*** Card " + cardNumber + " ***");
+                        System.out.println(i);
+                        System.out.println("*********");
+                        cardNumber++;
+                    }
                     // Card election
-                    System.out.println("What Card do you choose");
+                    System.out.println("What Card do you choose Defence");
                     cardChosen = sc.nextInt() - 1;
                     rand = new Random();
                     numberMachine = rand.nextInt(deck2.size());
@@ -88,6 +95,7 @@ public class Game {
                         System.out
                                 .println("Their attack: " + deck2.get(numberMachine).getAttack() + "\nYour Defence: "
                                         + deck1.get(cardChosen).getDef());
+                        System.out.println("You Won The Defence");
                     }
                     if (deck1.size() == 0) {
                         System.out.println("You have lost the game");
