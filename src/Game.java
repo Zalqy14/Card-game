@@ -9,11 +9,14 @@ public class Game {
         Scanner text = new Scanner(System.in);
         Scanner sc = new Scanner(System.in);
         Player player1 = new Player();
+        Player machine1 = new Player();
+
+        // Decks of cards
         ArrayList<Card> deck1 = new ArrayList<>();
         ArrayList<Card> deck2 = new ArrayList<>();
 
         // Gives Cards to the decks
-        for (int i = 1; i < 7; i++) {
+        for (int i = 1; i < 5; i++) {
             Card card = new Card();
             Card card2 = new Card();
             deck1.add(card);
@@ -24,7 +27,8 @@ public class Game {
 
         // Displays the current players HP
         do {
-            player1.hpInfo();
+            System.out.println(player1.hpInfo());
+            System.out.println(machine1.hpInfo());
             menuOptions();
             int option = text.nextInt();
             switch (option) {
@@ -43,10 +47,10 @@ public class Game {
                     Random rand = new Random();
                     int numberMachine = rand.nextInt(deck2.size());
                     Card machine = deck2.get(numberMachine);
-
+                    // Todo remove The show case and make something better
                     // Card Showcase
-                    System.out.println("------\nPlayer Card: \n" + deck1.get(cardChosen) + "\n------");
-                    System.out.println("------\nMachine Card: \n" + deck2.get(numberMachine) + "\n------");
+                    System.out.print("------\nPlayer Card: \n" + deck1.get(cardChosen) + "\n------");
+                    System.out.print("------\nMachine Card: \n" + deck2.get(numberMachine) + "\n------");
 
                     // Result of battle
                     int result = Game.battle(deck1.get(cardChosen), machine);
@@ -56,6 +60,7 @@ public class Game {
                         System.out.println("Card Destroyed");
                         deck2.remove(numberMachine);
                         System.out.println("Cards left: " + deck2.size());
+                        // If the hp from card is destroyed the remaining hp is subtracted from Machine
                     } else {
                         System.out.println("Your attack: " + deck1.get(cardChosen).getAttack() + "\nTheir Deffence: "
                                 + deck2.get(numberMachine).getDef());
@@ -65,11 +70,11 @@ public class Game {
                         surrender = false;
                     }
                     // Round 2 Player on the defence
-                    cardNumber = 1; // Reset The card number back to 1 from 6
+                    cardNumber = 1; // Reset The card number back to 1 from original
                     System.out.println("*** Deck ***");
                     for (Card i : deck1) {
                         System.out.println("*** Card " + cardNumber + " ***");
-                        System.out.println(i);
+                        System.out.print(i);
                         System.out.println("*********");
                         cardNumber++;
                     }
@@ -80,9 +85,10 @@ public class Game {
                     numberMachine = rand.nextInt(deck2.size());
                     machine = deck2.get(numberMachine);
 
+                    // Todo remove The show case and make something better
                     // Card Showcase
-                    System.out.println("------\nPlayer Card: \n" + deck1.get(cardChosen) + "\n------");
-                    System.out.println("------\nMachine Card: \n" + deck2.get(numberMachine) + "\n------");
+                    System.out.print("------\nPlayer Card: \n" + deck1.get(cardChosen) + "\n------");
+                    System.out.print("------\nMachine Card: \n" + deck2.get(numberMachine) + "\n------");
                     // Result of battle
                     result = Game.battle(machine, deck1.get(cardChosen));
                     if (result == 13) {
@@ -91,6 +97,7 @@ public class Game {
                         System.out.println("Card Destroyed");
                         deck1.remove(cardChosen);
                         System.out.println("Cards left: " + deck1.size());
+                        // If the hp from card is destroyed the remaining hp is subtracted from player
                     } else {
                         System.out
                                 .println("Their attack: " + deck2.get(numberMachine).getAttack() + "\nYour Defence: "
@@ -104,6 +111,13 @@ public class Game {
                     break;
                 case 2:
                     // Heal kinda not gonna do this :o
+                    /*
+                     * Have to trak when a card is destroyed and is gives the player a tipe of bonus
+                     * or object for the player to heal. Should heal like 5 hp or maybe instead fo
+                     * heal can add bonus to a card for the next round. Will do in future
+                     * 
+                     */
+
                     break;
                 case 3:
                     // Surrender
