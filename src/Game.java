@@ -6,7 +6,6 @@ public class Game {
     public static void main(String[] args) throws Exception {
 
         boolean surrender = true;
-        Scanner text = new Scanner(System.in);
         Scanner sc = new Scanner(System.in);
         Player player1 = new Player();
         Player machine1 = new Player();
@@ -32,7 +31,7 @@ public class Game {
             System.out.println(player1.hpInfo());
             System.out.println(machine1.hpInfo());
             GameUtils.menuOptions();
-            int option = text.nextInt();
+            int option = sc.nextInt();
             switch (option) {
                 case 1:
                     // All to do with card selection and showcase of cards
@@ -92,7 +91,6 @@ public class Game {
                     break;
             }
         } while (surrender);
-        text.close();
         sc.close();
     }
 
