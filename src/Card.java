@@ -5,14 +5,7 @@ public class Card {
     private int attack;
     private int def;
     private int hp;
-
-    // If creation of card as standard and hardcoded de comment
-
-    // public Card(int attack, int def, int hp) {
-    // this.attack = attack;
-    // this.def = def;
-    // this.hp = hp;
-    // };
+    private static Random rand = new Random();
 
     public Card() {
         this.attack = randomNumber();
@@ -22,7 +15,6 @@ public class Card {
 
     // Random generator of Stats
     public int randomNumber() {
-        Random rand = new Random();
         return rand.nextInt(11);
     };
 
