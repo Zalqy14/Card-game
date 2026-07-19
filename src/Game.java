@@ -7,7 +7,6 @@ public class Game {
 
         boolean surrender = true;
         Scanner sc = new Scanner(System.in);
-        Player player1 = new Player();
         Player machine1 = new Player();
         Random rand = new Random();
 
@@ -24,6 +23,9 @@ public class Game {
         }
         // Game Information
         // todo change the player to machine title
+        System.out.println("Whats your Name ?");
+        String playerName = sc.nextLine();
+        Player player1 = new Player(playerName);
         GameUtils.info();
 
         // Displays the current players HP
@@ -49,9 +51,9 @@ public class Game {
                     // Card Showcase
                     GameUtils.cardShowcase(deckPlayer, deckMachine, cardChosen, numberMachine);
                     // Round 1 Player on the offence
-                    OutComes result = GameUtils.battle(deckPlayer.get(cardChosen), machine);
+                    OutComes result = GameUtils.battle(deckPlayer.get(cardChosen), machine, machine1);
                     GameUtils.battleResult(result, deckMachine, deckPlayer, numberMachine, cardChosen);
-                    surrender = GameUtils.gameChecker(deckMachine);
+                    surrender = GameUtils.gameChecker(deckMachine, machine1);
                     if (surrender == false) {
                         break;
                     }
@@ -68,9 +70,9 @@ public class Game {
                     // Card Showcase
                     GameUtils.cardShowcase(deckPlayer, deckMachine, cardChosen, numberMachine);
                     // Result of battle
-                    result = GameUtils.battle(machine, deckPlayer.get(cardChosen));
+                    result = GameUtils.battle(machine, deckPlayer.get(cardChosen), player1);
                     GameUtils.battleResult(result, deckPlayer, deckMachine, cardChosen, numberMachine);
-                    surrender = GameUtils.gameChecker(deckPlayer);
+                    surrender = GameUtils.gameChecker(deckPlayer, player1);
                     break;
                 case 2:
                     // Heal kinda not gonna do this :o

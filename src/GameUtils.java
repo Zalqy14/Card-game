@@ -12,16 +12,18 @@ public class GameUtils {
     }
 
     // Battle function where is compared in attack vs defence
-    public static OutComes battle(Card one, Card two) {
+    public static OutComes battle(Card one, Card two, Player targetPlayer) {
         int attack = one.getAttack();
         int defence = two.getDef();
         int hp = two.getHp();
+        int damage = attack - defence;
         if ((attack - defence) > 0) {
             if ((attack - defence) <= hp) {
                 two.damageHp(attack, defence);
                 // Hp reduction
                 return OutComes.DAMAGE_HP;
             } else {
+                targetPlayer.hpDamage(damage);
                 // Card Destroyed
                 return OutComes.CARD_DESTROYED;
             }
@@ -73,8 +75,10 @@ public class GameUtils {
     }
 
     // Checks the state of the deck if to end the game
-    public static boolean gameChecker(ArrayList<Card> deck) {
+    public static boolean gameChecker(ArrayList<Card> deck, Player tagetPlayer) {
         if (deck.size() == 0) {
+            return false;
+        } else if (tagetPlayer.getPlayerHp() <= 0) {
             return false;
         } else {
             return true;
