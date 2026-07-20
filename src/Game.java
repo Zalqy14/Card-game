@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Game {
     public static void main(String[] args) throws Exception {
 
+        // GameGUI gameFrame = new GameGUI();
         boolean surrender = true;
         Scanner sc = new Scanner(System.in);
         Player machine1 = new Player();
@@ -27,7 +28,6 @@ public class Game {
         String playerName = sc.nextLine();
         Player player1 = new Player(playerName);
         GameUtils.info();
-
         // Displays the current players HP
         do {
             System.out.println(player1.hpInfo());

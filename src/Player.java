@@ -28,6 +28,10 @@ public class Player {
         return name;
     }
 
+    public void setPlayerName(String name) {
+        this.name = name;
+    }
+
     public String hpInfo() {
         return getPlayerName() + " Hp: " + getPlayerHp();
     }
